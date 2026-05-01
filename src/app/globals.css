@@ -12,15 +12,252 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), "Trebuchet MS", sans-serif;
+  overflow-x: hidden;
+}
+
+.romance-bg {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.24), transparent 34%),
+    radial-gradient(circle at 80% 75%, rgba(255, 233, 245, 0.35), transparent 42%),
+    linear-gradient(180deg, #ff96c4 0%, #ff7cb6 50%, #ff5ea8 100%);
+}
+
+.romance-card {
+  border: 4px solid #ffc0dd;
+  border-radius: 24px;
+  background: rgba(255, 214, 234, 0.92);
+  padding: 24px;
+  box-shadow: 0 0 0 5px #ff6cb0, 0 18px 38px rgba(133, 15, 71, 0.35);
+}
+
+.pixel-heart {
+  position: absolute;
+  top: -20px;
+  width: 8px;
+  height: 8px;
+  background: #ff2e8a;
+  box-shadow:
+    -8px 0 #ff2e8a,
+    8px 0 #ff2e8a,
+    -16px 8px #ff2e8a,
+    -8px 8px #ff2e8a,
+    0 8px #ff2e8a,
+    8px 8px #ff2e8a,
+    16px 8px #ff2e8a,
+    -16px 16px #ff2e8a,
+    -8px 16px #ff2e8a,
+    0 16px #ff2e8a,
+    8px 16px #ff2e8a,
+    16px 16px #ff2e8a,
+    -8px 24px #ff2e8a,
+    0 24px #ff2e8a,
+    8px 24px #ff2e8a,
+    0 32px #ff2e8a;
+  opacity: 0.85;
+  transform: scale(0.6);
+  animation: hearts-fall linear infinite;
+}
+
+.floating-photo {
+  position: absolute;
+  width: 132px;
+  height: 168px;
+  border: 3px solid #ff5ba8;
+  border-radius: 20px;
+  overflow: hidden;
+  z-index: 2;
+  box-shadow: 0 0 0 4px #ffc0dd, 0 14px 22px rgba(122, 15, 65, 0.28);
+  animation: drift 5.2s ease-in-out infinite;
+}
+
+.photo-frame {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border: 3px solid #ff4f9a;
+  background: #ffe0ef;
+  box-shadow: 0 0 0 3px #ff9ecb;
+  overflow: hidden;
+  border-radius: 14px;
+}
+
+.photo-square-aspect {
+  aspect-ratio: 1 / 1;
+}
+
+.ghibli-variant-1 img {
+  filter: saturate(1.25) contrast(1.06) brightness(1.04) sepia(0.1);
+}
+
+.ghibli-variant-2 img {
+  filter: saturate(1.18) contrast(1.08) brightness(1.06) hue-rotate(-8deg);
+}
+
+.ghibli-variant-3 img {
+  filter: saturate(1.3) contrast(1.12) brightness(0.98) hue-rotate(8deg);
+}
+
+.ghibli-variant-4 img {
+  filter: saturate(1.2) contrast(1.08) brightness(1.03) hue-rotate(16deg);
+}
+
+.ghibli-variant-5 img {
+  filter: saturate(1.12) contrast(1.06) brightness(1.08) hue-rotate(24deg);
+}
+
+.ghibli-variant-6 img {
+  filter: saturate(1.2) contrast(1.1) brightness(0.99) hue-rotate(-24deg);
+}
+
+.orbit-ring {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 9999px;
+  border: 2px dashed rgba(255, 79, 154, 0.5);
+}
+
+.orbit-ring-outer {
+  inset: -18px;
+  animation: spin-slow 18s linear infinite;
+}
+
+.orbit-ring-inner {
+  inset: 28%;
+  border-color: rgba(255, 79, 154, 0.35);
+  animation: spin-reverse 12s linear infinite;
+}
+
+.center-spark {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 180px;
+  height: 180px;
+  transform: translate(-50%, -50%);
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.46) 0%, rgba(255, 183, 218, 0.35) 36%, transparent 72%);
+  animation: pulse-soft 2.8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.music-toggle {
+  position: fixed;
+  right: 16px;
+  bottom: calc(14px + env(safe-area-inset-bottom));
+  z-index: 60;
+  border: 2px solid #a70b58;
+  border-radius: 9999px;
+  background: #ff3f96;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 10px 14px;
+  box-shadow: 0 8px 22px rgba(122, 15, 65, 0.34);
+}
+
+@media (max-width: 640px) {
+  .romance-card {
+    border-width: 3px;
+    border-radius: 18px;
+    padding: 14px;
+    box-shadow: 0 0 0 3px #ff6cb0, 0 12px 24px rgba(133, 15, 71, 0.3);
+  }
+
+  .photo-frame {
+    border-width: 2px;
+    box-shadow: 0 0 0 2px #ff9ecb;
+    border-radius: 10px;
+  }
+
+  .music-toggle {
+    right: 10px;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    padding: 9px 12px;
+  }
+}
+
+.music-frame {
+  position: fixed;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
+  border: 0;
+}
+
+@keyframes hearts-fall {
+  0% {
+    transform: translateY(-8vh) scale(0.5);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 0.9;
+  }
+
+  100% {
+    transform: translateY(115vh) scale(0.7);
+    opacity: 0;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin-reverse {
+  from {
+    transform: rotate(360deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes pulse-soft {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: translate(-50%, -50%) scale(0.92);
+  }
+
+  50% {
+    opacity: 0.9;
+    transform: translate(-50%, -50%) scale(1.06);
+  }
 }
