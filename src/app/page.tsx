@@ -30,7 +30,7 @@ export default function Home() {
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (value.trim() === "1802") {
+    if (value.trim() === "1308") {
       setShowError(false);
       router.push("/futuro");
       return;
@@ -79,12 +79,15 @@ export default function Home() {
           >
             data de namoro
           </label>
+          <p className="text-center text-xs font-semibold uppercase tracking-[0.1em] text-[#a70b58]">
+            dia e mes exemplo xxyy
+          </p>
           <input
             id="date-key"
             type="password"
             value={value}
             onChange={(event) => setValue(event.target.value)}
-            placeholder="••••"
+            placeholder="1308"
             className="w-full rounded-md border-2 border-[#ff5ba8] bg-[#fff3fa] px-4 py-3 text-center text-base font-bold tracking-[0.18em] text-[#7a0f41] outline-none transition focus:border-[#d61b77] focus:ring-4 focus:ring-[#ff9bc9] sm:text-lg sm:tracking-[0.2em]"
           />
           <button
