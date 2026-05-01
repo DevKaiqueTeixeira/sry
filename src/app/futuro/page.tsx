@@ -38,13 +38,19 @@ const GALERIA = [
   foto6,
 ];
 
-const WHATSAPP_URL =
-  "https://wa.me/5511964917419?text=VOC%C3%8A%20%C3%89%20MEU%20HOMEM%20E%20VOU%20TE%20AMAR%20PRA%20SEMPRE";
+const WHATSAPP_MESSAGE =
+  "Fico muito feliz de podermos tentar novamente da forma certa, eu te amo meu GIGANTE GOSTOSO SARADO ABSURDO DE HOMEM LINDO PERFEITO DIVO";
+const WHATSAPP_URL = `https://wa.me/5511964917419?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
+const WHATSAPP_BLOCK_URL = "https://wa.me/5511964917419";
 
 export default function FuturoPage() {
   const [unlocked, setUnlocked] = useState(false);
   const [started, setStarted] = useState(false);
   const [typedText, setTypedText] = useState("");
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
+  const [acceptedNoRepeat, setAcceptedNoRepeat] = useState(false);
+  const [acceptedRestart, setAcceptedRestart] = useState(false);
+  const allTermsAccepted = acceptedTerms && acceptedNoRepeat && acceptedRestart;
 
   const hearts = useMemo(
     () =>
@@ -128,7 +134,11 @@ export default function FuturoPage() {
               {typedText}
               {typedText.length < DISCURSO.length ? (
                 <span className="ml-1 inline-block h-5 w-0.5 animate-pulse bg-[#7a0f41] align-middle" />
-              ) : null}
+              ) : (
+                <span className="mt-6 block text-center text-2xl font-black uppercase tracking-[0.16em] text-[#ff2f93] sm:text-3xl">
+                  VOCÊ É TUDO PRA MIM
+                </span>
+              )}
             </>
           ) : (
             <div className="flex min-h-24 items-center justify-center">
@@ -144,14 +154,74 @@ export default function FuturoPage() {
         </div>
 
         {started && typedText.length >= DISCURSO.length ? (
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-5 inline-flex rounded-full border-2 border-[#128c7e] bg-[#25d366] px-6 py-3 text-xs font-extrabold uppercase tracking-[0.16em] text-white shadow-lg transition hover:bg-[#1fb958]"
-          >
-            responder no whats
-          </a>
+          <div className="mt-5 flex w-full flex-col items-center gap-3">
+            <label className="flex w-full max-w-md items-center gap-3 rounded-xl border-2 border-[#a70b58] bg-[#ffe8f4] px-4 py-3 text-[#7a0f41] shadow-md">
+              <input
+                type="checkbox"
+                checked={acceptedTerms}
+                onChange={(event) => setAcceptedTerms(event.target.checked)}
+                className="h-5 w-5 accent-[#ff3f96]"
+              />
+              <span className="text-left">
+                <strong className="block text-sm uppercase tracking-[0.14em]">
+                  termos e condições
+                </strong>
+                <span className="block text-sm">Eu entendo e genuinamente compreendo</span>
+              </span>
+            </label>
+
+            <label className="flex w-full max-w-md items-center gap-3 rounded-xl border-2 border-[#a70b58] bg-[#ffe8f4] px-4 py-3 text-[#7a0f41] shadow-md">
+              <input
+                type="checkbox"
+                checked={acceptedNoRepeat}
+                onChange={(event) => setAcceptedNoRepeat(event.target.checked)}
+                className="h-5 w-5 accent-[#ff3f96]"
+              />
+              <span className="block text-left text-sm">Não vou repetir os mesmos erros</span>
+            </label>
+
+            <label className="flex w-full max-w-md items-center gap-3 rounded-xl border-2 border-[#a70b58] bg-[#ffe8f4] px-4 py-3 text-[#7a0f41] shadow-md">
+              <input
+                type="checkbox"
+                checked={acceptedRestart}
+                onChange={(event) => setAcceptedRestart(event.target.checked)}
+                className="h-5 w-5 accent-[#ff3f96]"
+              />
+              <span className="block text-left text-sm">Esquecermos o passado e recomeçeremos</span>
+            </label>
+
+            {allTermsAccepted ? (
+              <>
+                <a
+                  href={WHATSAPP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex rounded-full border-2 border-[#128c7e] bg-[#25d366] px-6 py-3 text-xs font-extrabold uppercase tracking-[0.16em] text-white shadow-lg transition hover:bg-[#1fb958]"
+                >
+                  responder no whats
+                </a>
+              </>
+            ) : (
+              <>
+                <p className="text-center text-xs font-semibold text-[#7a0f41]">
+                  se não concordar com as checkbox por favor me bloqueie
+                </p>
+
+                <a
+                  href={WHATSAPP_BLOCK_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex rounded-full border-2 border-[#a70b58] bg-[#ff77b7] px-6 py-3 text-xs font-extrabold uppercase tracking-[0.16em] text-white shadow-lg transition hover:bg-[#ff5ea8]"
+                >
+                  bloquear no whats
+                </a>
+
+                <p className="text-center text-xs text-[#7a0f41]">
+                  Abra o contato e toque em bloquear manualmente.
+                </p>
+              </>
+            )}
+          </div>
         ) : null}
       </section>
     </main>
