@@ -30,7 +30,7 @@ export default function Home() {
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (value.trim() === "1308") {
+    if (value.trim() === "1802") {
       setShowError(false);
       router.push("/futuro");
       return;
@@ -87,7 +87,7 @@ export default function Home() {
             type="password"
             value={value}
             onChange={(event) => setValue(event.target.value)}
-            placeholder="1308"
+            placeholder="1802"
             className="w-full rounded-md border-2 border-[#ff5ba8] bg-[#fff3fa] px-4 py-3 text-center text-base font-bold tracking-[0.18em] text-[#7a0f41] outline-none transition focus:border-[#d61b77] focus:ring-4 focus:ring-[#ff9bc9] sm:text-lg sm:tracking-[0.2em]"
           />
           <button
